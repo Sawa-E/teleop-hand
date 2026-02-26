@@ -57,7 +57,7 @@ make test
 | 言語 | C++ | メイン言語 |
 | ビルド | CMake | ビルドシステム |
 | 線形代数 | Eigen | 行列演算 |
-| GUI | OpenGL + GLFW + GLEW | リアルタイムGUI表示 |
+| GUI | ImGui + ImPlot + GLFW + OpenGL | ライブ状態表示・グラフ・モード切替 |
 | ハードウェアI/O | Contec PCI DA/カウンタボード | モータ電圧出力・エンコーダ読み取り |
 | JSON | Boost.PropertyTree | 設定ファイル読み込み |
 | 通信 | UDP ソケット (POSIX socket) | finger-tracker からの指令値受信（[ADR 002](docs/design/decisions/002-communication-protocol.md)） |
@@ -87,7 +87,7 @@ comm（通信層）── UDP受信（localhost:50000, ADR 002）
     │
     ▼
 controller（制御ロジック）── DOBベース加速度制御（ADR 004）
-    │ 制御モード: idle / DA_check / remote / Bilateral
+    │ 制御モード: idle / DA_check / remote / Record / Bilateral
     │
     ▼
 hardware（ハードウェアI/O）
@@ -102,7 +102,7 @@ controller_try から継承するリアルタイム制御構造（[ADR 004](docs
 - タイマースレッドによる周期実行（サンプリング周波数: 設定ファイルで指定、デフォルト 10kHz）
 - 関節ごとの状態管理: command / response / reference / compensation / output
 - 信号処理: 擬似微分 → DOB（外乱オブザーバ）→ 制御則 → トルクリミット → 電圧変換
-- 制御モード: idle / DA_check / remote（余弦定理逆運動学+PD制御, [ADR 005](docs/design/decisions/005-control-philosophy.md)） / Bilateral（将来、EMS力フィードバック）
+- 制御モード: idle / DA_check / remote（余弦定理逆運動学+PD制御, [ADR 005](docs/design/decisions/005-control-philosophy.md)） / Record（remote+データ記録） / Bilateral（将来、EMS力フィードバック）
 
 ## 用語
 
