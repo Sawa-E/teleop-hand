@@ -1,0 +1,8 @@
+{
+  "comment":"vendor_id and device id are in hex(0x...) form.",
+  "vendor_id":"0x1221",
+  "device_id":"0x86D3",
+  "board_order":0,
+  "range":20,
+  "max_voltage":10.0
+}

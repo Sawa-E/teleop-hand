@@ -1,0 +1,30 @@
+{
+  "compute_engine":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  },
+  "read_sensor":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  },
+  "write_output":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  },
+  "record_motion":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  },
+  "recv_command":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  },
+  "draw_gui":{
+    "sampling_frequency":0,
+    "is_single_loop":0
+  },
+  "default":{
+    "sampling_frequency":10,
+    "is_single_loop":1
+  }
+}

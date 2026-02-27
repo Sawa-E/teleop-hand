@@ -1,0 +1,30 @@
+{
+  "grid":
+  {
+    "col_size": 6,
+    "row_size": 5
+  },
+  "widget":
+  [
+    {
+      "name":"display_status",
+      "top_left": [0,0],
+      "bottom_right": [5,1]
+    },
+    {
+      "name":"control_mode_selection",
+      "top_left": [0,4],
+      "bottom_right": [5,4]
+    },
+    {
+      "name":"plot_state",
+      "top_left": [0,2],
+      "bottom_right": [2,3]
+    },
+    {
+      "name":"finger_tracker_status",
+      "top_left": [3,2],
+      "bottom_right": [5,3]
+    }
+  ]
+}
