@@ -66,8 +66,8 @@ void mc::control::register_controller()
     if (distance_mm < 0.0) distance_mm = 0.0;
     if (distance_mm > max_dist) distance_mm = max_dist;
 
-    // convert mm to m
-    double x_d = distance_mm / 1000.0;
+    // invert: small finger distance (grasp) → large x_d → large theta_cmd (robot closes)
+    double x_d = (max_dist - distance_mm) / 1000.0;
 
     // clamp to valid range for inverse kinematics (0 to 2r)
     double max_x = 2.0 * r;
