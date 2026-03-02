@@ -39,7 +39,7 @@ void mc::control::register_controller()
   {
     for (size_t i = 0; i < robot.joints.size(); ++i)
     {
-      f_out(i) = 1.0;
+      f_out(i) = 0.3;
     }
   };
 
