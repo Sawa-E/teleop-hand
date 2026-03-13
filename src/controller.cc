@@ -159,6 +159,7 @@ void mc::control::register_controller()
     // command filter: first-order low-pass
     buf_cmd += dt * g_cmd * (theta_cmd_raw - buf_cmd);
     double theta_cmd = buf_cmd;
+    //double theta_cmd = M_PI * 30.0 / 180.0 * sin(2.0 * M_PI * 0.5 * time_count * 0.0001);
 
     //Kita add
     dx_cmd = g_cmd * (theta_cmd - dx_buf);
@@ -171,12 +172,15 @@ void mc::control::register_controller()
     for (size_t i = 0; i < robot.joints.size(); ++i)
     {
       f_ref(i) = M(i) * (k_p(i) * (theta_cmd - x_res(i)) + k_v(i) * (dx_cmd - dx_res(i)));
-      f_out(i) = f_ref(i) + f_dis(i);
+      f_vol(i) = f_ref(i) + f_dis(i);
+      f_out(i) = f_vol(i);
     }
 
-    fprintf(ft, "%lf, %lf, %lf, %lf, %lf, %lf\n", time_count * 0.0001, theta_cmd, x_res(0), dx_res(0), theta_cmd_raw, dt);//buf_cmd);
+    if(time_count % 10 == 0){
+    fprintf(ft, "%lf, %lf, %lf, %lf, %lf, %lf\n", time_count * 0.0001, theta_cmd, x_res(0), dx_res(0), theta_cmd_raw, f_dis(0));//buf_cmd);
+    }
     time_count++;
-    if(time_count == 100000)
+    if(time_count == 200000)
     {
       fclose(ft);
     }
